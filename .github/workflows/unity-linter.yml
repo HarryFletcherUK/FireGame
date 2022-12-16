@@ -20,7 +20,7 @@ jobs:
           unity-license-file: $UNITY_LICENSE
       - name: Echo Unity executable path
         run: |
-          echo "Unity executable path: $(which -a unity | grep '/usr/local/unity/2019.2.11f1/Editor')"
+          echo "Unity executable path: $(which -a unity | grep '/opt/unity')"
       - name: Run Unity Analyzer
         run: |
           Unity -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" -executeMethod UnityEditor.UnityAnalyzer.Analyze -analyzerConfigFile "${ANALYSER_CONFIG_FILE}"
