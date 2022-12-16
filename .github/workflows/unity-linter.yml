@@ -19,9 +19,10 @@ jobs:
           install-location: '/opt/unity'
           unity-license-file: $UNITY_LICENSE
       - name: Find Unity executable
+        id: find
         run: |
-          unity_path=$(find / -name Unity 2>/dev/null)
-          echo "Unity executable found at $unity_path"
+          unity_path=$(find /opt/unity -name Unity 2>/dev/null)
+          echo "::set-output name=unity_path::$unity_path"
       - name: Run Unity Analyzer
         run: |
           echo $PATH
