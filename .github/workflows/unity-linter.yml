@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Setup Unity
-        uses: Unity-Technologies/com.unity.cli-project-setup@v1
+        uses: actions/setup-unity@v2
         with:
           unity-version: '2021.3.15f1'
           license: ${{ secrets.UNITY_LICENSE }}
