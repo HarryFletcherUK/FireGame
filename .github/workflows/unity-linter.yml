@@ -9,7 +9,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Install Unity Editor
-        uses: UnityTechnologies/setup-unity@v1
+        uses: kuler90/setup-unity@v1
         with:
           version: '2021.3.15f1'
           install-location: '/opt/unity'
