@@ -13,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Install and Activate Unity
-        uses: game-ci/unity-activate@v3.0.0
+        uses: game-ci/unity-activate@v2.0.0
         with:
           unity-version: '2021.3.15f1'
           install-location: '/opt/unity'
