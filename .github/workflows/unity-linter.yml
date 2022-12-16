@@ -4,6 +4,7 @@ on: [push]
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+  ANALYSER_CONFIG_FILE: .github/workflows/unity-analyzer.json
 
 jobs:
   lint:
@@ -17,9 +18,6 @@ jobs:
           version: '2021.3.15f1'
           install-location: '/opt/unity'
           unity-license-file: $UNITY_LICENSE
-      - name: Set environment variables
-        env:
-          ANALYSER_CONFIG_FILE: .github/workflows/unity-analyzer.json
       - name: Run Unity Analyzer
         run: |
           Unity -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" -executeMethod UnityEditor.UnityAnalyzer.Analyze -analyzerConfigFile "${ANALYSER_CONFIG_FILE}"
