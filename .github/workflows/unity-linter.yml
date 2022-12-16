@@ -1,26 +1,19 @@
-name: Lint Unity Code
+name: Unity Lint
 
 on: [push]
 
-env:
-  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-  ANALYSER_CONFIG_FILE: .github/workflows/unity-analyzer.json
-
 jobs:
-  lint:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Install and Activate Unity
-        uses: game-ci/unity-activate@v2.0.0
+      - uses: actions/checkout@v2
+      - name: Setup Unity
+        uses: Unity-Technologies/com.unity.cli-project-setup@v1
         with:
           unity-version: '2021.3.15f1'
-          install-location: '/opt/unity'
-          unity-license-file: $UNITY_LICENSE
-      - name: Echo Unity executable path
+          license: ${{ secrets.UNITY_LICENSE }}
+      - name: Lint code
         run: |
-          echo "Unity executable path: $(which -a unity | grep '/usr/local/unity/2019.2.11f1/Editor')"
-      - name: Run Unity Analyzer
-        run: |
-          Unity -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" -executeMethod UnityEditor.UnityAnalyzer.Analyze -analyzerConfigFile "${ANALYSER_CONFIG_FILE}"
+          cd $UNITY_PROJECT_ROOT
+          echo "Linting code..."
+          # Add your linting command here
