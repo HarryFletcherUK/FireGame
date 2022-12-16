@@ -1,0 +1,17 @@
+name: Lint Unity Code
+
+on: [push]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install Unity Editor
+        uses: actions/setup-unity@v1
+        with:
+          version: '2021.3.15f1'
+      - name: Run Unity Analyzer
+        run: |
+          Unity -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" -executeMethod UnityEditor.UnityAnalyzer.Analyze -analyzerConfigFile "${ANALYSER_CONFIG_FILE}"
