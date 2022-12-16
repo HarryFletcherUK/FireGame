@@ -8,12 +8,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Set Unity license environment variable
+        run: echo ::set-env name=UNITY_LICENSE::${{ secrets.UNITY_LICENSE }}
       - name: Install and Activate Unity
         uses: game-ci/unity-activate@v2.0.0
         with:
           version: '2021.3.15f1'
           install-location: '/opt/unity'
-          unity-license-type: personal
+          unity-license-file: $UNITY_LICENSE
       - name: Set linting configuration
         run: echo ::set-env name=ANALYSER_CONFIG_FILE::.github/workflows/unity-analyzer.json
       - name: Run Unity Analyzer
