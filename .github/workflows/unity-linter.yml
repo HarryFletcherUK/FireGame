@@ -2,14 +2,15 @@ name: Lint Unity Code
 
 on: [push]
 
+env:
+  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Set Unity license environment variable
-        run: echo ::set-env name=UNITY_LICENSE::${{ secrets.UNITY_LICENSE }}
       - name: Install and Activate Unity
         uses: game-ci/unity-activate@v2.0.0
         with:
