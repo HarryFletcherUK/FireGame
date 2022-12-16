@@ -19,6 +19,10 @@ jobs:
           version: '2021.3.15f1'
           install-location: '/opt/unity'
           unity-license-file: $UNITY_LICENSE
+      - name: Find Unity executable
+        run: |
+          unity_path=$(find / -name Unity 2>/dev/null)
+          echo "Unity executable found at $unity_path"
       - name: Run Unity Analyzer
         run: |
           echo $PATH
