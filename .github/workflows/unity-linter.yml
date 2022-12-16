@@ -13,17 +13,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Install and Activate Unity
+        env:
+          PATH: ${{ env.PATH }}:/opt/unity/Editor/{version}
         uses: game-ci/unity-activate@v2.0.0
         with:
           version: '2021.3.15f1'
           install-location: '/opt/unity'
           unity-license-file: $UNITY_LICENSE
-      - name: Find Unity executable
-        id: find
-        run: |
-          unity_path=$(find /opt/unity -name Unity 2>/dev/null)
-          echo "::set-output name=unity_path::$unity_path"
       - name: Run Unity Analyzer
         run: |
-          echo $PATH
           Unity -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" -executeMethod UnityEditor.UnityAnalyzer.Analyze -analyzerConfigFile "${ANALYSER_CONFIG_FILE}"
