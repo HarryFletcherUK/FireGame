@@ -1,19 +1,15 @@
 name: Unity Lint
 
-on: [push]
+on:
+  pull_request:
+    branches: [ master ]
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Setup Unity
-        uses: actions/setup-unity@v2
-        with:
-          unity-version: '2021.3.15f1'
-          license: ${{ secrets.UNITY_LICENSE }}
-      - name: Lint code
-        run: |
-          cd $UNITY_PROJECT_ROOT
-          echo "Linting code..."
-          # Add your linting command here
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Run Unity Lint
+        run: dotnet run -p src/UnityLint.csproj
