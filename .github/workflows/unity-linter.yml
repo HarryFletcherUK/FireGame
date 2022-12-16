@@ -8,13 +8,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Install Unity Editor
-        uses: game-ci/install-unity@v1
-        with:
-          version: '2021.3.15f1'
-          install-location: '/opt/unity'
-      - name: Activate Unity
-        uses: game-ci/activate-unity@v1
+      - name: Install and Activate Unity
+        uses: game-ci/unity-activate@v2.0.0
         with:
           version: '2021.3.15f1'
           install-location: '/opt/unity'
