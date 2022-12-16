@@ -5,6 +5,7 @@ on: [push]
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
   ANALYSER_CONFIG_FILE: .github/workflows/unity-analyzer.json
+  PATH: ${{ env.PATH }}:/opt/unity
 
 jobs:
   lint:
