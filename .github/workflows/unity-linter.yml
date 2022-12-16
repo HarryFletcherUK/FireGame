@@ -2,7 +2,6 @@ name: Unity Lint
 
 on:
   pull_request:
-    branches: [ master ]
 
 jobs:
   lint:
