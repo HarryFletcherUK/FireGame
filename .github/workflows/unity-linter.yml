@@ -20,4 +20,5 @@ jobs:
           unity-license-file: $UNITY_LICENSE
       - name: Run Unity Analyzer
         run: |
+          echo $PATH
           Unity -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" -executeMethod UnityEditor.UnityAnalyzer.Analyze -analyzerConfigFile "${ANALYSER_CONFIG_FILE}"
