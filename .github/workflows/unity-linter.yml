@@ -17,8 +17,9 @@ jobs:
           version: '2021.3.15f1'
           install-location: '/opt/unity'
           unity-license-file: $UNITY_LICENSE
-      - name: Set linting configuration
-        run: echo ::set-env name=ANALYSER_CONFIG_FILE::.github/workflows/unity-analyzer.json
+      - name: Set environment variables
+        env:
+          ANALYSER_CONFIG_FILE: .github/workflows/unity-analyzer.json
       - name: Run Unity Analyzer
         run: |
           Unity -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" -executeMethod UnityEditor.UnityAnalyzer.Analyze -analyzerConfigFile "${ANALYSER_CONFIG_FILE}"
