@@ -10,4 +10,4 @@ jobs:
       - name: Install dependencies
         run: dotnet restore
       - name: Run Unity Lint
-        run: dotnet run -p src/UnityLint.csproj
+        run: dotnet run -p src/UnityLint/UnityLint.csproj
