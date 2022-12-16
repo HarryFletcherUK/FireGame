@@ -1,7 +1,6 @@
 name: Unity Lint
 
-on:
-  pull_request:
+on: [push]
 
 jobs:
   lint:
