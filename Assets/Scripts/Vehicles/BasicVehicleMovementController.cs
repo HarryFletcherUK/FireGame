@@ -2,25 +2,13 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class BasicVehicleController : MonoBehaviour
+public class BasicVehicleMovementController : MonoBehaviour
 {
     [SerializeField] private float speed = 10.0f; // Speed of the vehicle
 
     [SerializeField] private float rotationSpeed = 100.0f; // Rotation speed of the vehicle
 
     [SerializeField] private Camera cam;
-
-    private void OnEnable()
-    {
-        print("Enabled");
-        // Setup camera to follow vehicle
-    }
-    
-    private void OnDisable()
-    {
-        print("Disabled");
-        // Stop camera following vehicle
-    }
 
     void Update()
     {
