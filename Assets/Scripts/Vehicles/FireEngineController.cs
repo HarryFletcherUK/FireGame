@@ -20,24 +20,25 @@ public class FireEngineController : MonoBehaviour
         playerCam = Camera.main.gameObject;
     }
 
-    public void Activate()
+    public void EnterVehicle()
     {
         // Disable player
         player.SetActive(false);
                 
-        // Enable Firetruck
+        // Enable Firetruck and firetruck cam
         movecontroller.enabled = true;
         triggerPoint.SetActive(false);
         fireCam.SetActive(true);
         playerCam.SetActive(false);
         
         // Setup trigger for
-        actionButtonPressed.GetEvent().AddListener(Deactivate);
+        actionButtonPressed.GetEvent().AddListener(ExitVehicle);
     }
     
-    private void Deactivate()
+    private void ExitVehicle()
     {
-        actionButtonPressed.GetEvent().RemoveListener(Deactivate);
+        // Remove trigger for
+        actionButtonPressed.GetEvent().RemoveListener(ExitVehicle);
         
         // Disable Firetruck
         movecontroller.enabled = false;
