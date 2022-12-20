@@ -43,14 +43,14 @@ public class TriggerPoint : MonoBehaviour
     private void TogglePromptAndEventListener()
     {
         TogglePrompt();
-        ToggleListener(5);
+        ToggleListener();
     }
 
     /// <summary>
     /// Toggles listening or not listening to [activationEvent]
     /// [activationEvent] is the event that will trigger [onButtonPressed] while tagged object is in the trigger area
     /// </summary>
-    private void ToggleListener(int number)
+    private void ToggleListener()
     {
         if (listenerActive.Toggle())
             activationEvent.GetEvent().AddListener(onButtonPressed.Invoke);
