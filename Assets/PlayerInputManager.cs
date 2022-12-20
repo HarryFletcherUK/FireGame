@@ -12,8 +12,6 @@ public class PlayerInputManager : MonoBehaviour
         
         SubscribePlayerEventsToInputEvents();
     }
-    
-    jumpKey = KeyCode.space;
 
     void Update()
     {
