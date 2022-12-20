@@ -12,16 +12,18 @@ public class VehicleCameraMovement : MonoBehaviour
 
     private void Start()
     {
+        var camTransform = transform.GetChild(0);
+
         // Reset rotation, then apply distance
-        transform.SetPositionAndRotation(transform.parent.position, transform.parent.rotation);
-        transform.position += Vector3.back * cameraDistance;
-        transform.parent.Rotate(Vector3.right, cameraAngle, Space.World);
+        camTransform.SetPositionAndRotation(transform.position, transform.rotation);
+        camTransform.position += Vector3.back * cameraDistance;
+        transform.Rotate(Vector3.right, cameraAngle, Space.World);
     }
 
     void Update()
     {
         // Update position of camera parent to follow trucks
-        transform.parent.position = fireEngine.position;
-        transform.parent.Rotate(Vector3.up, Input.GetAxis("RotateCamera") * rotateSpeed, Space.World);
+        transform.position = fireEngine.position;
+        transform.Rotate(Vector3.up, Input.GetAxis("RotateCamera") * rotateSpeed, Space.World);
     }
 }
