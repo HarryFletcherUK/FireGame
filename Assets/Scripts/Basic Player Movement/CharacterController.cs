@@ -3,7 +3,7 @@ using UnityEngine;
 public class CharacterController : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 6f; // Speed of the character
+    private float moveSpeed = 6f; // Speed of the character
     [SerializeField]
     private float jumpForce = 5f; // Force of the character's jump
     [SerializeField]
