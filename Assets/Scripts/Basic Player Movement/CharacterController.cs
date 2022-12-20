@@ -47,7 +47,7 @@ public class CharacterController : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         // Check if the character has collided with an object marked as "Ground"
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.CompareTag("Ground"))
         {
             // Set the character's position to be slightly above the ground
             transform.position = new Vector3(transform.position.x, collision.contacts[0].point.y, transform.position.z);
