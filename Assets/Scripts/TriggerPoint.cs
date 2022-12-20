@@ -7,7 +7,7 @@ public class TriggerPoint : MonoBehaviour
     [SerializeField] private string tagName;
     [SerializeField] private GameObject prompt;
     [SerializeField] private UnityEvent onButtonPressed;
-    [SerializeField] private EventHandlerEvent eventButton;
+    [SerializeField] private EventHandlerEvent activationEvent;
     private bool listenerActive = false;
     
     private void Start()
@@ -15,48 +15,52 @@ public class TriggerPoint : MonoBehaviour
         if (prompt != null) prompt.SetActive(false);
     }
 
-    public void Activate()
+    private void Update()
     {
-        onButtonPressed.Invoke();
+        transform.position = new Vector3();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag(tagName))
-            return;
-
-        ToggleAll();
+        if (other.CompareTag(tagName))
+            TogglePromptAndEventListener();
     }
-
+    
     private void OnTriggerExit(Collider other)
     {
-        if (!other.CompareTag(tagName))
-            return;
-
-        ToggleAll();
+        if (other.CompareTag(tagName))
+            TogglePromptAndEventListener();
     }
-
-    private void ToggleListener()
+    
+    private void OnDisable()
     {
-        listenerActive = !listenerActive;
-
-        if (listenerActive)
-            eventButton.GetEvent().AddListener(Activate);
-        else
-            eventButton.GetEvent().RemoveListener(Activate);
+        TogglePromptAndEventListener();
     }
 
-    private void ToggleAll()
+    /// <summary>
+    /// This method will display the prompt 
+    /// </summary>
+    private void TogglePromptAndEventListener()
     {
         TogglePrompt();
         ToggleListener();
     }
 
-    private void OnDisable()
+    /// <summary>
+    /// Toggles listening or not listening to [activationEvent]
+    /// [activationEvent] is the event that will trigger [onButtonPressed] while tagged object is in the trigger area
+    /// </summary>
+    private void ToggleListener()
     {
-        ToggleAll();
+        if (listenerActive.Toggle())
+            activationEvent.GetEvent().AddListener(onButtonPressed.Invoke);
+        else
+            activationEvent.GetEvent().RemoveListener(onButtonPressed.Invoke);
     }
 
+    /// <summary>
+    /// Show or hide the button prompt canvas
+    /// </summary>
     private void TogglePrompt()
     {
         if (prompt != null) prompt.SetActive(!prompt.activeSelf);

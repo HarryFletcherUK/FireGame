@@ -1278,7 +1278,7 @@ PrefabInstance:
       objectReference: {fileID: 511350813}
     - target: {fileID: 6510063271511728526, guid: 549361b5416a31f4f981194af0e4052e, type: 3}
       propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Activate
+      value: EnterVehicle
       objectReference: {fileID: 0}
     - target: {fileID: 6510063271511728526, guid: 549361b5416a31f4f981194af0e4052e, type: 3}
       propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
