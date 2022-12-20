@@ -29,11 +29,10 @@ public class PlayerEventHandler : MonoBehaviour
             // Y Pressed
             actionButtonPressed.GetEvent().Invoke();
         }
-        // A button on xbox
-        if (Input.GetKeyDown(KeyCode.JoystickButton0)) // TODO: Update to use new input system instead
-        {
-            print("A pressed");
-            jumpButtonPressed.GetEvent().Invoke();
-        }
+    }
+
+    public EventHandlerEvent GetJumpEvent()
+    {
+        return jumpButtonPressed;
     }
 }
