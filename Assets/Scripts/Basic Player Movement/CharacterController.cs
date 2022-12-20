@@ -32,8 +32,8 @@ public class CharacterController : MonoBehaviour
 
 
         // Move the character based on the input
-        transform.position -= transform.forward * verticalInput * speed * Time.deltaTime;
-        transform.position += transform.right * horizontalMoveInput * speed * Time.deltaTime;
+        transform.position -= transform.forward * verticalInput * moveSpeed * Time.deltaTime;
+        transform.position += transform.right * horizontalMoveInput * moveSpeed * Time.deltaTime;
         transform.Rotate(Vector3.up, horizontalInput * rotationSpeed * Time.deltaTime);
 
         // Jump if the character is grounded and the space bar is pressed
