@@ -12,6 +12,10 @@ public class TestObiRopeExtender : MonoBehaviour
     Camera mainCam;
     public Transform hoseGun;
     public Transform baseObject;
+    public Transform hoseReel;
+    private float dist;
+    private float rotAng;
+    public float hoseMaxLength = 10f;
 
     private void Start()
     {
@@ -27,8 +31,12 @@ public class TestObiRopeExtender : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log(rope.restLength);
-        //Debug.Log(Vector3.Distance(hoseGun.position, baseObject.position));
-        cursor.ChangeLength(Vector3.Distance(hoseGun.position, baseObject.position));
+        dist = Vector3.Distance(hoseGun.position, baseObject.position);
+
+        //set length of rope based on the hose gun distance from hose reel
+        if(dist < hoseMaxLength) 
+        { 
+            cursor.ChangeLength(dist);
+        }
     }
 }
