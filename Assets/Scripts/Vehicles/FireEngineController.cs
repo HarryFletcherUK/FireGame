@@ -8,9 +8,9 @@ public class FireEngineController : MonoBehaviour
     [SerializeField] private BasicVehicleMovementController movecontroller;
     [SerializeField] private Transform vehicleEntryPoint;
     [SerializeField] private GameObject triggerPoint;
-    [SerializeField] private ActionButtonEvent actionButtonPressed;
+    [SerializeField] private OpenButtonEvent openButtonPressed;
     [SerializeField] private GameObject fireCam;
-    
+
     private GameObject player;
     private GameObject playerCam;
 
@@ -32,13 +32,13 @@ public class FireEngineController : MonoBehaviour
         playerCam.SetActive(false);
         
         // Setup trigger for
-        actionButtonPressed.GetEvent().AddListener(ExitVehicle);
+        openButtonPressed.GetEvent().AddListener(ExitVehicle);
     }
     
     private void ExitVehicle()
     {
         // Remove trigger for
-        actionButtonPressed.GetEvent().RemoveListener(ExitVehicle);
+        openButtonPressed.GetEvent().RemoveListener(ExitVehicle);
         
         // Disable Firetruck
         movecontroller.enabled = false;

@@ -17,7 +17,7 @@ public class TriggerPoint : MonoBehaviour
 
     private void Update()
     {
-        transform.position = new Vector3();
+        // transform.position = new Vector3();
     }
 
     private void OnTriggerEnter(Collider other)

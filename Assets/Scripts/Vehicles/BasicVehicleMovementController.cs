@@ -18,8 +18,8 @@ public class BasicVehicleMovementController : MonoBehaviour
         var movement = new Vector2();
         
         // Get the horizontal and vertical input from the Xbox controller
-        movement.x = Input.GetAxis("Horizontal");
-        movement.y = Input.GetAxis("Accelerate") - Input.GetAxis("Brake");
+        movement.x = PlayerInputManager.Instance.MoveXAxisInput.GetValue;
+        movement.y = PlayerInputManager.Instance.GrabRightButtonInput.GetValue - PlayerInputManager.Instance.GrabLeftButtonInput.GetValue;
 
         return movement;
     }
