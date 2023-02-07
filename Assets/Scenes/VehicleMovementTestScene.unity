@@ -2727,7 +2727,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1547865880, guid: 549361b5416a31f4f981194af0e4052e, type: 3}
       propertyPath: rotationSpeed
-      value: 5
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1547865880, guid: 549361b5416a31f4f981194af0e4052e, type: 3}
       propertyPath: brakingSharpness
