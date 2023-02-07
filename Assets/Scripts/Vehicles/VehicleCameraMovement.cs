@@ -24,6 +24,6 @@ public class VehicleCameraMovement : MonoBehaviour
     {
         // Update position of camera parent to follow trucks
         transform.position = fireEngine.position;
-        transform.Rotate(Vector3.up, Input.GetAxis("RotateCamera") * rotateSpeed, Space.World);
+        transform.Rotate(Vector3.up, PlayerInputManager.Instance.LookXAxisInput.GetValue * rotateSpeed, Space.World);
     }
 }

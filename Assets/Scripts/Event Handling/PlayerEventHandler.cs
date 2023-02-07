@@ -3,12 +3,12 @@ using System.CodeDom;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(ActionButtonEvent))]
+[RequireComponent(typeof(OpenButtonEvent))]
 public class PlayerEventHandler : MonoBehaviour
 {
     public static PlayerEventHandler Instance { private set; get; }
 
-    [SerializeField] private ActionButtonEvent actionButtonPressed;
+    [SerializeField] private OpenButtonEvent openButtonPressed;
     [SerializeField] private JumpButtonEvent jumpButtonPressed;
 
     private void Awake()
@@ -16,24 +16,8 @@ public class PlayerEventHandler : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
+    public EventHandlerEvent GetJumpEvent()
     {
-        actionButtonPressed = GetComponent<ActionButtonEvent>();
-    }
-
-    public void Update()
-    {
-        // Y button on xbox
-        if (Input.GetKeyDown(KeyCode.JoystickButton3)) // TODO: Update to use new input system instead
-        {
-            // Y Pressed
-            actionButtonPressed.GetEvent().Invoke();
-        }
-        // A button on xbox
-        if (Input.GetKeyDown(KeyCode.JoystickButton0)) // TODO: Update to use new input system instead
-        {
-            print("A pressed");
-            jumpButtonPressed.GetEvent().Invoke();
-        }
+        return jumpButtonPressed;
     }
 }

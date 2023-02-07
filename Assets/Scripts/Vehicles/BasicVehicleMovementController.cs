@@ -4,8 +4,14 @@ using UnityEngine.EventSystems;
 
 public class BasicVehicleMovementController : MonoBehaviour
 {
-    [SerializeField] private float speed = 10.0f; // Speed of the vehicle
-    [SerializeField] private float rotationSpeed = 100.0f; // Rotation speed of the vehicle
+    private float speed = 10.0f; // Speed of the vehicle
+    private float rotationSpeed = 100.0f; // Rotation speed of the vehicle
+    private PlayerInputManager input;
+    
+    private void Start()
+    {
+        input = PlayerInputManager.Instance;
+    }
 
     void Update()
     {
@@ -13,13 +19,17 @@ public class BasicVehicleMovementController : MonoBehaviour
         Move(movement);
     }
 
-    private static Vector2 GetInput()
+    private Vector2 GetInput()
     {
         var movement = new Vector2();
         
+        var steering = input.MoveXAxisInput.GetValue;
+        var accelerating = input.GrabRightButtonInput.GetValue;
+        var breaking = input.GrabLeftButtonInput.GetValue;
+
         // Get the horizontal and vertical input from the Xbox controller
-        movement.x = Input.GetAxis("Horizontal");
-        movement.y = Input.GetAxis("Accelerate") - Input.GetAxis("Brake");
+        movement.x = steering;
+        movement.y = accelerating - breaking;
 
         return movement;
     }
