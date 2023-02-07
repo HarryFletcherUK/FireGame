@@ -24,18 +24,18 @@ MonoBehaviour:
     generateSurface: 1
     blurRadius: 0.02
     surfaceDownsample: 1
-    lighting: 1
+    lighting: 0
     smoothness: 0.8
     metalness: 0
     ambientMultiplier: 1
     generateReflection: 1
     reflection: 0.2
     generateRefraction: 1
-    transparency: 1
+    transparency: 0
     absorption: 5
     refraction: 0.01
     refractionDownsample: 1
-    generateFoam: 1
+    generateFoam: 0
     foamDownsample: 1
 --- !u!114 &11400000
 MonoBehaviour:
