@@ -1,23 +1,23 @@
 using UnityEngine;
 
-public class PlayerInputButtonBind
+public class InputButtonBind
 {
     public readonly KeyCode Keyboard;
     public readonly KeyCode Controller;
 
-    public PlayerInputButtonBind(KeyCode keyboardBinding, KeyCode controllerBinding)
+    public InputButtonBind(KeyCode keyboardBinding, KeyCode controllerBinding)
     {
         Keyboard = keyboardBinding;
         Controller = controllerBinding;
     }
 }
 
-public class PlayerInputAxisBind
+public class InputAxisBind
 {
     public readonly string Keyboard;
     public readonly string Controller;
 
-    public PlayerInputAxisBind(string keyboardBinding, string controllerBinding)
+    public InputAxisBind(string keyboardBinding, string controllerBinding)
     {
         Keyboard = keyboardBinding;
         Controller = controllerBinding;

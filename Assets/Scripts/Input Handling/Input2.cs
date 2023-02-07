@@ -3,14 +3,10 @@ using System.Drawing.Printing;
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class PlayerInput
+public abstract class Input2
 {
-    private static List<PlayerInput> allPlayerInputs = new List<PlayerInput>();
-
-    protected PlayerInput()
-    {
-        allPlayerInputs.Add(this);
-    }
+    protected static List<Input2> allPlayerInputs = new List<Input2>();
+    protected static List<Input2> allVehicleInputs = new List<Input2>();
 
     public static void CheckAllPlayerInputs()
     {
@@ -19,18 +15,39 @@ public abstract class PlayerInput
             playerInput.CheckForInput();
         }
     }
+    
+    public static void CheckAllVehicleInputs()
+    {
+        foreach (var vehicleInput in allVehicleInputs)
+        {
+            vehicleInput.CheckForInput();
+        }
+    }
+
+    protected void AddInputToList(Input2 input, InputType type)
+    {
+        switch (type)
+        {
+            case InputType.Player:
+                allPlayerInputs.Add(input);
+                break;
+            case InputType.Vehicle:
+                allVehicleInputs.Add(input);
+                break;
+        }
+    }
 
     protected abstract void CheckForInput();
 }
 
-public class Player2AxisInput: PlayerInput
+public class Player2AxisInput: Input2
 {
-    private PlayerAxisInput axisX;
-    private PlayerAxisInput axisY;
+    private AxisInput axisX;
+    private AxisInput axisY;
     
     public UnityEvent<Vector2> onAxisEvent = new UnityEvent<Vector2>();
     
-    public Player2AxisInput(PlayerAxisInput axisX, PlayerAxisInput axisY)
+    public Player2AxisInput(AxisInput axisX, AxisInput axisY)
     {
         this.axisX = axisX;
         this.axisY = axisY;
@@ -43,7 +60,7 @@ public class Player2AxisInput: PlayerInput
     }
 }
 
-public class PlayerAxisInput: PlayerInput
+public class AxisInput: Input2
 {
     private string mouseAxis;
     private string controllerAxis;
@@ -51,13 +68,14 @@ public class PlayerAxisInput: PlayerInput
 
     public UnityEvent<float> onAxisEvent = new UnityEvent<float>();
 
-    public PlayerAxisInput(PlayerInputAxisBind axisBind)
+    public AxisInput(InputAxisBind axisBind, InputType type)
     {
         mouseAxis = axisBind.Keyboard;
         controllerAxis = axisBind.Controller;
+        AddInputToList(this, type);
     }
 
-    public float GetValue => Input.GetAxis(controllerAxis);
+    public float GetValue => Input.GetAxis(controllerAxis) + Input.GetAxis(mouseAxis);
 
     protected override void CheckForInput()
     {
@@ -68,14 +86,16 @@ public class PlayerAxisInput: PlayerInput
             isZero = true;
         }
         else
+        {
             if (isZero)
                 isZero = false;
+        }
 
         onAxisEvent.Invoke(GetValue);
     }
 }
 
-public class PlayerButtonInput: PlayerInput
+public class ButtonInput: Input2
 {
     private KeyCode keyboardKey;
     private KeyCode controllerButton;
@@ -84,10 +104,11 @@ public class PlayerButtonInput: PlayerInput
     public UnityEvent onEvent = new UnityEvent();
     public UnityEvent onUpEvent = new UnityEvent();
 
-    public PlayerButtonInput(PlayerInputButtonBind buttonBind)
+    public ButtonInput(InputButtonBind buttonBind, InputType type)
     {
         keyboardKey = buttonBind.Keyboard;
         controllerButton = buttonBind.Controller;
+        AddInputToList(this, type);
     }
 
     protected override void CheckForInput()
@@ -97,4 +118,10 @@ public class PlayerButtonInput: PlayerInput
         if (Input.GetKey(controllerButton)     || Input.GetKey(keyboardKey))     onEvent.Invoke();
         if (Input.GetKeyUp(controllerButton)   || Input.GetKeyUp(keyboardKey))   onUpEvent.Invoke();
     }
+}
+
+public enum InputType
+{
+    Player,
+    Vehicle,
 }
