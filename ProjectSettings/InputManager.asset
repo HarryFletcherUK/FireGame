@@ -6,36 +6,36 @@ InputManager:
   serializedVersion: 2
   m_Axes:
   - serializedVersion: 3
-    m_Name: Horizontal
-    descriptiveName: 
+    m_Name: LeftStickHorizontal
+    descriptiveName: Left Thumb Stick Horizontal Movement
     descriptiveNegativeName: 
     negativeButton: left
     positiveButton: right
     altNegativeButton: a
     altPositiveButton: d
     gravity: 3
-    dead: 0.001
+    dead: 10
     sensitivity: 3
     snap: 1
     invert: 0
-    type: 0
+    type: 2
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Vertical
-    descriptiveName: 
+    m_Name: LeftStickVertical
+    descriptiveName: Left Thumb Stick Vertical Movement
     descriptiveNegativeName: 
     negativeButton: down
     positiveButton: up
     altNegativeButton: s
     altPositiveButton: w
     gravity: 3
-    dead: 0.001
+    dead: 10
     sensitivity: 3
     snap: 1
-    invert: 0
-    type: 0
-    axis: 0
+    invert: 1
+    type: 2
+    axis: 1
     joyNum: 0
   - serializedVersion: 3
     m_Name: Fire1
@@ -98,8 +98,8 @@ InputManager:
     sensitivity: 1000
     snap: 0
     invert: 0
-    type: 0
-    axis: 0
+    type: 2
+    axis: 8
     joyNum: 0
   - serializedVersion: 3
     m_Name: Mouse X
@@ -150,8 +150,8 @@ InputManager:
     axis: 2
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Horizontal
-    descriptiveName: 
+    m_Name: RightStickHorizontal
+    descriptiveName: Right Thumb Stick Horizontal Movement
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: 
@@ -163,11 +163,11 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 0
+    axis: 3
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Vertical
-    descriptiveName: 
+    m_Name: RightStickVertical
+    descriptiveName: Right Thumb Stick Vertical Movement
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: 
@@ -177,9 +177,9 @@ InputManager:
     dead: 0.19
     sensitivity: 1
     snap: 0
-    invert: 1
+    invert: 0
     type: 2
-    axis: 1
+    axis: 4
     joyNum: 0
   - serializedVersion: 3
     m_Name: Accelerate
@@ -310,27 +310,27 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Submit
+    m_Name: RightBumper
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: return
+    positiveButton: joystick button 5
     altNegativeButton: 
-    altPositiveButton: joystick button 0
+    altPositiveButton: 
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
     snap: 0
     invert: 0
     type: 0
-    axis: 0
+    axis: 4
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Submit
+    m_Name: LeftBumper
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: enter
+    positiveButton: joystick button 4
     altNegativeButton: 
     altPositiveButton: space
     gravity: 1000
@@ -339,7 +339,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 0
-    axis: 0
+    axis: 5
     joyNum: 0
   - serializedVersion: 3
     m_Name: Cancel
